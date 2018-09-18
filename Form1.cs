@@ -86,6 +86,9 @@ namespace INFOIBV
                     if (textBox2.Text.Equals("") || textBox3.Equals("")) return;
                     Image = conversionGaussian(Image, Convert.ToDouble(textBox2.Text), Convert.ToInt16(textBox3.Text));
                     break;
+                case "threshold":
+                    Image = conversionThreshold(Image, Convert.ToInt16(textBox1.Text));
+                    break;
                 default:
                     Console.WriteLine("Nothing matched");
                     break;
@@ -105,6 +108,24 @@ namespace INFOIBV
             progressBar.Visible = false;                                    // Hide progress bar
         }
 
+        private Color[,] conversionThreshold(Color[,] image, int threshold)
+        {
+            //image = conversionGrayscale(image); // Convert image to grayscale
+            progressBar.Value = 1;
+            for (int x = 0; x < InputImage.Size.Width; x++)
+            {
+                for (int y = 0; y < InputImage.Size.Height; y++)
+                {
+                    Color pixelColor = image[x, y];                         // Get the pixel color at coordinate (x,y)
+                    int newColor = pixelColor.R > threshold ? 255 : 0;      //Uses the red color to calculate the threshold, since all channels are the same.
+                    Color updatedColor = Color.FromArgb(newColor, newColor, newColor); // Pixel is either 255 or 0, depending on the threshold.
+                    image[x, y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                    progressBar.PerformStep();                              // Increment progress bar
+                }
+
+            }
+            return image;
+        }
         private Color[,] conversionGrayscale(Color[,] image)
         {
             for (int x = 0; x < InputImage.Size.Width; x++)

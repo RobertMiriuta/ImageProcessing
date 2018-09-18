@@ -15,3 +15,11 @@ C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Relea
 C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Release\INFOIBV.csproj.GenerateResource.Cache
 C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Release\INFOIBV.exe
 C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Release\INFOIBV.pdb
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\obj\x86\Release\INFOIBV.csprojResolveAssemblyReference.cache
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\obj\x86\Release\INFOIBV.INFOIBV.resources
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\obj\x86\Release\INFOIBV.Properties.Resources.resources
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\obj\x86\Release\INFOIBV.csproj.GenerateResource.Cache
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\obj\x86\Release\INFOIBV.exe
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\obj\x86\Release\INFOIBV.pdb
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\bin\Release\INFOIBV.exe
+C:\Users\doombringer\Desktop\School\Minor\Image Processing\Project\ImageProcessing\bin\Release\INFOIBV.pdb

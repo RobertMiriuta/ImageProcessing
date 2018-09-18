@@ -135,7 +135,8 @@
             "negative",
             "grayscale",
             "contrastadjustment",
-            "gaussian"});
+            "gaussian",
+            "threshold"});
             this.comboBox1.Location = new System.Drawing.Point(688, 17);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(161, 24);

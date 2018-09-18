@@ -15,3 +15,12 @@ C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Relea
 C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Release\INFOIBV.csproj.GenerateResource.Cache
 C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Release\INFOIBV.exe
 C:\Users\doombringer\Desktop\School\Minor\Image Processing\INFOIBV\obj\x86\Release\INFOIBV.pdb
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\bin\Release\INFOIBV.exe
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\bin\Release\INFOIBV.pdb
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.csprojAssemblyReference.cache
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.INFOIBV.resources
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.Properties.Resources.resources
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.csproj.GenerateResource.cache
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.csproj.CoreCompileInputs.cache
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.exe
+C:\Users\rober\Documents\Uni\WS18&19_Utrecht\Image Processing\Assignment1\Code\ImageProcessing\obj\x86\Release\INFOIBV.pdb

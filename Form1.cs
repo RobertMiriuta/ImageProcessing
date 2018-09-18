@@ -50,6 +50,34 @@ namespace INFOIBV
             progressBar.Value = 1;
             progressBar.Step = 1;
 
+            //Create Textbox List for easy Iteration
+            List<TextBox> boxes = new List<TextBox>();
+            boxes.Add(matrix1);
+            boxes.Add(matrix2);
+            boxes.Add(matrix3);
+            boxes.Add(matrix4);
+            boxes.Add(matrix5);
+            boxes.Add(matrix6);
+            boxes.Add(matrix7);
+            boxes.Add(matrix8);
+            boxes.Add(matrix9);
+            boxes.Add(matrix10);
+            boxes.Add(matrix11);
+            boxes.Add(matrix12);
+            boxes.Add(matrix13);
+            boxes.Add(matrix14);
+            boxes.Add(matrix15);
+            boxes.Add(matrix16);
+            boxes.Add(matrix17);
+            boxes.Add(matrix18);
+            boxes.Add(matrix19);
+            boxes.Add(matrix20);
+            boxes.Add(matrix21);
+            boxes.Add(matrix22);
+            boxes.Add(matrix23);
+            boxes.Add(matrix24);
+            boxes.Add(matrix25);
+
             // Copy input Bitmap to array            
             for (int x = 0; x < InputImage.Size.Width; x++)
             {
@@ -88,6 +116,9 @@ namespace INFOIBV
                     break;
                 case "threshold":
                     Image = conversionThreshold(Image, Convert.ToInt16(textBox1.Text));
+                    break;
+                case "linear":
+                    Image = conversionLinear(Image, boxes);
                     break;
                 default:
                     Console.WriteLine("Nothing matched");
@@ -242,6 +273,12 @@ namespace INFOIBV
             return applyFilterToImage(image, gaussianFilter);
         }
 
+        private Color[,] conversionLinear(Color[,] image, List<TextBox> boxes)
+        {
+            double[,] linearFilter = createLinearFilter(boxes);
+            return applyFilterToImage(image, linearFilter);
+        }
+
         private double[,] createGaussianFilter(double sigma, int size)
         {
             double[,] gaussianFilter = new double[size, size];
@@ -274,6 +311,39 @@ namespace INFOIBV
             }
             return gaussianFilter;
         }
+
+        private double[,] createLinearFilter(List<TextBox> boxes)
+        {
+            int i = 0, j = 0;
+            double sum = 0;
+            int kernel = 5;
+            double[,] linearFilter = new double[kernel, kernel];
+            foreach(TextBox box in boxes)
+            {
+                linearFilter[i, j] = Convert.ToDouble(box.Text);
+                sum += linearFilter[i, j];
+                if (i < kernel - 1)
+                {
+                    i++;
+                } 
+                else
+                {
+                    i = 0;
+                    j++;
+                }
+            }
+
+            for (int x = 0; x < kernel; ++x)
+            {
+                for (int y = 0; y < kernel; ++y)
+                {
+                    linearFilter[x, y] /= sum;
+                }
+            }
+            return linearFilter;
+        }
+
+
 
         private Color[,] applyFilterToImage(Color[,] image, double[,] filter)
         {
@@ -359,6 +429,11 @@ namespace INFOIBV
                 label1.Visible = false;
                 label2.Visible = false;
             }
+        }
+
+        private void INFOIBV_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -157,7 +157,8 @@
             "contrastadjustment",
             "gaussian",
             "threshold",
-            "linear"});
+            "linear",
+            "median"});
             this.comboBox1.Location = new System.Drawing.Point(516, 14);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";

@@ -120,6 +120,9 @@ namespace INFOIBV
                 case "linear":
                     Image = conversionLinear(Image, boxes);
                     break;
+                case "median":
+                    Image = conversionMedian(Image, Convert.ToInt16(textBox1.Text));
+                    break;
                 default:
                     Console.WriteLine("Nothing matched");
                     break;
@@ -277,6 +280,36 @@ namespace INFOIBV
         {
             double[,] linearFilter = createLinearFilter(boxes);
             return applyFilterToImage(image, linearFilter);
+        }
+
+        private Color[,] conversionMedian(Color[,] image, int size)
+        {
+            int halfSize = (size - 1) / 2;
+            Color[,] newImage = new Color[InputImage.Size.Width, InputImage.Size.Height];
+            for (int x = halfSize; x < (InputImage.Size.Width - halfSize); x++)
+            {
+                for (int y = halfSize; y < (InputImage.Size.Height - halfSize); y++)
+                {
+                    int[] pixelVector = new int[size * size];
+                    int pixelVectorIndex = 0;
+                    for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
+                    {
+                        for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
+                        {
+                            Color filterColor = image[x - xFilter, y - yFilter];
+                            pixelVector[pixelVectorIndex] = filterColor.R;
+                            pixelVectorIndex++;
+                        }
+                    }
+                    Array.Sort(pixelVector);
+                    int newColor = pixelVector[(pixelVector.Length + 1) / 2];
+                    Color updatedColor = Color.FromArgb(newColor,newColor,newColor);
+                    newImage[x - halfSize, y - halfSize] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                    progressBar.PerformStep();                              // Increment progress bar
+                }
+
+            }
+            return newImage;
         }
 
         private double[,] createGaussianFilter(double sigma, int size)

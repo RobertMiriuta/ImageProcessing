@@ -110,7 +110,7 @@ namespace INFOIBV
 
         private Color[,] conversionThreshold(Color[,] image, int threshold)
         {
-            //image = conversionGrayscale(image); // Convert image to grayscale
+            image = conversionGrayscale(image); // Convert image to grayscale, even though it already is a grayscale image.
             progressBar.Value = 1;
             for (int x = 0; x < InputImage.Size.Width; x++)
             {

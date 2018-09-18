@@ -43,16 +43,40 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.matrix1 = new System.Windows.Forms.TextBox();
+            this.matrix6 = new System.Windows.Forms.TextBox();
+            this.matrix2 = new System.Windows.Forms.TextBox();
+            this.matrix13 = new System.Windows.Forms.TextBox();
+            this.matrix12 = new System.Windows.Forms.TextBox();
+            this.matrix11 = new System.Windows.Forms.TextBox();
+            this.matrix8 = new System.Windows.Forms.TextBox();
+            this.matrix7 = new System.Windows.Forms.TextBox();
+            this.matrix3 = new System.Windows.Forms.TextBox();
+            this.matrix4 = new System.Windows.Forms.TextBox();
+            this.matrix18 = new System.Windows.Forms.TextBox();
+            this.matrix17 = new System.Windows.Forms.TextBox();
+            this.matrix16 = new System.Windows.Forms.TextBox();
+            this.matrix23 = new System.Windows.Forms.TextBox();
+            this.matrix22 = new System.Windows.Forms.TextBox();
+            this.matrix21 = new System.Windows.Forms.TextBox();
+            this.matrix19 = new System.Windows.Forms.TextBox();
+            this.matrix14 = new System.Windows.Forms.TextBox();
+            this.matrix9 = new System.Windows.Forms.TextBox();
+            this.matrix20 = new System.Windows.Forms.TextBox();
+            this.matrix15 = new System.Windows.Forms.TextBox();
+            this.matrix10 = new System.Windows.Forms.TextBox();
+            this.matrix5 = new System.Windows.Forms.TextBox();
+            this.matrix24 = new System.Windows.Forms.TextBox();
+            this.matrix25 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // LoadImageButton
             // 
-            this.LoadImageButton.Location = new System.Drawing.Point(16, 15);
-            this.LoadImageButton.Margin = new System.Windows.Forms.Padding(4);
+            this.LoadImageButton.Location = new System.Drawing.Point(12, 12);
             this.LoadImageButton.Name = "LoadImageButton";
-            this.LoadImageButton.Size = new System.Drawing.Size(131, 28);
+            this.LoadImageButton.Size = new System.Drawing.Size(98, 23);
             this.LoadImageButton.TabIndex = 0;
             this.LoadImageButton.Text = "Load image...";
             this.LoadImageButton.UseVisualStyleBackColor = true;
@@ -66,29 +90,26 @@
             // 
             // imageFileName
             // 
-            this.imageFileName.Location = new System.Drawing.Point(155, 17);
-            this.imageFileName.Margin = new System.Windows.Forms.Padding(4);
+            this.imageFileName.Location = new System.Drawing.Point(116, 14);
             this.imageFileName.Name = "imageFileName";
             this.imageFileName.ReadOnly = true;
-            this.imageFileName.Size = new System.Drawing.Size(368, 22);
+            this.imageFileName.Size = new System.Drawing.Size(277, 20);
             this.imageFileName.TabIndex = 1;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(17, 55);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 45);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(683, 630);
+            this.pictureBox1.Size = new System.Drawing.Size(512, 512);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
             // applyButton
             // 
-            this.applyButton.Location = new System.Drawing.Point(856, 15);
-            this.applyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.applyButton.Location = new System.Drawing.Point(642, 12);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(137, 28);
+            this.applyButton.Size = new System.Drawing.Size(103, 23);
             this.applyButton.TabIndex = 3;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
@@ -101,10 +122,9 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1264, 14);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.saveButton.Location = new System.Drawing.Point(948, 11);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(127, 28);
+            this.saveButton.Size = new System.Drawing.Size(95, 23);
             this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Save as BMP...";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -112,20 +132,18 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(708, 55);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(531, 45);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(683, 630);
+            this.pictureBox2.Size = new System.Drawing.Size(512, 512);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(1001, 17);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(4);
+            this.progressBar.Location = new System.Drawing.Point(751, 14);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(255, 25);
+            this.progressBar.Size = new System.Drawing.Size(191, 20);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 6;
             this.progressBar.Visible = false;
@@ -138,42 +156,48 @@
             "grayscale",
             "contrastadjustment",
             "gaussian",
-            "threshold"});
-            this.comboBox1.Location = new System.Drawing.Point(688, 17);
+            "threshold",
+            "linear"});
+            this.comboBox1.Location = new System.Drawing.Point(516, 14);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 24);
+            this.comboBox1.Size = new System.Drawing.Size(122, 21);
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(582, 18);
+            this.textBox1.Location = new System.Drawing.Point(436, 15);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.Size = new System.Drawing.Size(76, 20);
             this.textBox1.TabIndex = 9;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(582, 3);
+            this.textBox2.Location = new System.Drawing.Point(436, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.Size = new System.Drawing.Size(76, 20);
             this.textBox2.TabIndex = 10;
             this.textBox2.Visible = false;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(582, 31);
+            this.textBox3.Location = new System.Drawing.Point(436, 25);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.Size = new System.Drawing.Size(76, 20);
             this.textBox3.TabIndex = 11;
             this.textBox3.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(530, 6);
+            this.label1.Location = new System.Drawing.Point(398, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Sigma:";
             this.label1.Visible = false;
@@ -181,18 +205,244 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(530, 34);
+            this.label2.Location = new System.Drawing.Point(398, 28);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 17);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "Kernel:";
             this.label2.Visible = false;
             // 
+            // matrix1
+            // 
+            this.matrix1.Location = new System.Drawing.Point(1106, 123);
+            this.matrix1.Name = "matrix1";
+            this.matrix1.Size = new System.Drawing.Size(23, 20);
+            this.matrix1.TabIndex = 14;
+            this.matrix1.Text = "0";
+            // 
+            // matrix6
+            // 
+            this.matrix6.Location = new System.Drawing.Point(1106, 149);
+            this.matrix6.Name = "matrix6";
+            this.matrix6.Size = new System.Drawing.Size(23, 20);
+            this.matrix6.TabIndex = 15;
+            this.matrix6.Text = "0";
+            // 
+            // matrix2
+            // 
+            this.matrix2.Location = new System.Drawing.Point(1135, 123);
+            this.matrix2.Name = "matrix2";
+            this.matrix2.Size = new System.Drawing.Size(23, 20);
+            this.matrix2.TabIndex = 16;
+            this.matrix2.Text = "0";
+            // 
+            // matrix13
+            // 
+            this.matrix13.Location = new System.Drawing.Point(1164, 175);
+            this.matrix13.Name = "matrix13";
+            this.matrix13.Size = new System.Drawing.Size(23, 20);
+            this.matrix13.TabIndex = 19;
+            this.matrix13.Text = "0";
+            // 
+            // matrix12
+            // 
+            this.matrix12.Location = new System.Drawing.Point(1135, 175);
+            this.matrix12.Name = "matrix12";
+            this.matrix12.Size = new System.Drawing.Size(23, 20);
+            this.matrix12.TabIndex = 20;
+            this.matrix12.Text = "0";
+            // 
+            // matrix11
+            // 
+            this.matrix11.Location = new System.Drawing.Point(1106, 175);
+            this.matrix11.Name = "matrix11";
+            this.matrix11.Size = new System.Drawing.Size(23, 20);
+            this.matrix11.TabIndex = 21;
+            this.matrix11.Text = "0";
+            // 
+            // matrix8
+            // 
+            this.matrix8.Location = new System.Drawing.Point(1164, 149);
+            this.matrix8.Name = "matrix8";
+            this.matrix8.Size = new System.Drawing.Size(23, 20);
+            this.matrix8.TabIndex = 22;
+            this.matrix8.Text = "0";
+            // 
+            // matrix7
+            // 
+            this.matrix7.Location = new System.Drawing.Point(1135, 149);
+            this.matrix7.Name = "matrix7";
+            this.matrix7.Size = new System.Drawing.Size(23, 20);
+            this.matrix7.TabIndex = 23;
+            this.matrix7.Text = "0";
+            // 
+            // matrix3
+            // 
+            this.matrix3.Location = new System.Drawing.Point(1164, 123);
+            this.matrix3.Name = "matrix3";
+            this.matrix3.Size = new System.Drawing.Size(23, 20);
+            this.matrix3.TabIndex = 24;
+            this.matrix3.Text = "0";
+            // 
+            // matrix4
+            // 
+            this.matrix4.Location = new System.Drawing.Point(1193, 123);
+            this.matrix4.Name = "matrix4";
+            this.matrix4.Size = new System.Drawing.Size(23, 20);
+            this.matrix4.TabIndex = 25;
+            this.matrix4.Text = "0";
+            // 
+            // matrix18
+            // 
+            this.matrix18.Location = new System.Drawing.Point(1164, 201);
+            this.matrix18.Name = "matrix18";
+            this.matrix18.Size = new System.Drawing.Size(23, 20);
+            this.matrix18.TabIndex = 26;
+            this.matrix18.Text = "0";
+            // 
+            // matrix17
+            // 
+            this.matrix17.Location = new System.Drawing.Point(1135, 201);
+            this.matrix17.Name = "matrix17";
+            this.matrix17.Size = new System.Drawing.Size(23, 20);
+            this.matrix17.TabIndex = 27;
+            this.matrix17.Text = "0";
+            // 
+            // matrix16
+            // 
+            this.matrix16.Location = new System.Drawing.Point(1106, 201);
+            this.matrix16.Name = "matrix16";
+            this.matrix16.Size = new System.Drawing.Size(23, 20);
+            this.matrix16.TabIndex = 28;
+            this.matrix16.Text = "0";
+            // 
+            // matrix23
+            // 
+            this.matrix23.Location = new System.Drawing.Point(1164, 227);
+            this.matrix23.Name = "matrix23";
+            this.matrix23.Size = new System.Drawing.Size(23, 20);
+            this.matrix23.TabIndex = 29;
+            this.matrix23.Text = "0";
+            // 
+            // matrix22
+            // 
+            this.matrix22.Location = new System.Drawing.Point(1135, 227);
+            this.matrix22.Name = "matrix22";
+            this.matrix22.Size = new System.Drawing.Size(23, 20);
+            this.matrix22.TabIndex = 30;
+            this.matrix22.Text = "0";
+            // 
+            // matrix21
+            // 
+            this.matrix21.Location = new System.Drawing.Point(1106, 227);
+            this.matrix21.Name = "matrix21";
+            this.matrix21.Size = new System.Drawing.Size(23, 20);
+            this.matrix21.TabIndex = 31;
+            this.matrix21.Text = "0";
+            // 
+            // matrix19
+            // 
+            this.matrix19.Location = new System.Drawing.Point(1193, 201);
+            this.matrix19.Name = "matrix19";
+            this.matrix19.Size = new System.Drawing.Size(23, 20);
+            this.matrix19.TabIndex = 32;
+            this.matrix19.Text = "0";
+            // 
+            // matrix14
+            // 
+            this.matrix14.Location = new System.Drawing.Point(1193, 175);
+            this.matrix14.Name = "matrix14";
+            this.matrix14.Size = new System.Drawing.Size(23, 20);
+            this.matrix14.TabIndex = 33;
+            this.matrix14.Text = "0";
+            // 
+            // matrix9
+            // 
+            this.matrix9.Location = new System.Drawing.Point(1193, 149);
+            this.matrix9.Name = "matrix9";
+            this.matrix9.Size = new System.Drawing.Size(23, 20);
+            this.matrix9.TabIndex = 34;
+            this.matrix9.Text = "0";
+            // 
+            // matrix20
+            // 
+            this.matrix20.Location = new System.Drawing.Point(1222, 201);
+            this.matrix20.Name = "matrix20";
+            this.matrix20.Size = new System.Drawing.Size(23, 20);
+            this.matrix20.TabIndex = 35;
+            this.matrix20.Text = "0";
+            // 
+            // matrix15
+            // 
+            this.matrix15.Location = new System.Drawing.Point(1222, 175);
+            this.matrix15.Name = "matrix15";
+            this.matrix15.Size = new System.Drawing.Size(23, 20);
+            this.matrix15.TabIndex = 36;
+            this.matrix15.Text = "0";
+            // 
+            // matrix10
+            // 
+            this.matrix10.Location = new System.Drawing.Point(1222, 149);
+            this.matrix10.Name = "matrix10";
+            this.matrix10.Size = new System.Drawing.Size(23, 20);
+            this.matrix10.TabIndex = 37;
+            this.matrix10.Text = "0";
+            // 
+            // matrix5
+            // 
+            this.matrix5.Location = new System.Drawing.Point(1222, 123);
+            this.matrix5.Name = "matrix5";
+            this.matrix5.Size = new System.Drawing.Size(23, 20);
+            this.matrix5.TabIndex = 38;
+            this.matrix5.Text = "0";
+            // 
+            // matrix24
+            // 
+            this.matrix24.Location = new System.Drawing.Point(1193, 227);
+            this.matrix24.Name = "matrix24";
+            this.matrix24.Size = new System.Drawing.Size(23, 20);
+            this.matrix24.TabIndex = 39;
+            this.matrix24.Text = "0";
+            // 
+            // matrix25
+            // 
+            this.matrix25.Location = new System.Drawing.Point(1222, 227);
+            this.matrix25.Name = "matrix25";
+            this.matrix25.Size = new System.Drawing.Size(23, 20);
+            this.matrix25.TabIndex = 40;
+            this.matrix25.Text = "0";
+            // 
             // INFOIBV
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1403, 709);
+            this.ClientSize = new System.Drawing.Size(1272, 576);
+            this.Controls.Add(this.matrix25);
+            this.Controls.Add(this.matrix24);
+            this.Controls.Add(this.matrix5);
+            this.Controls.Add(this.matrix10);
+            this.Controls.Add(this.matrix15);
+            this.Controls.Add(this.matrix20);
+            this.Controls.Add(this.matrix9);
+            this.Controls.Add(this.matrix14);
+            this.Controls.Add(this.matrix19);
+            this.Controls.Add(this.matrix21);
+            this.Controls.Add(this.matrix22);
+            this.Controls.Add(this.matrix23);
+            this.Controls.Add(this.matrix16);
+            this.Controls.Add(this.matrix17);
+            this.Controls.Add(this.matrix18);
+            this.Controls.Add(this.matrix4);
+            this.Controls.Add(this.matrix3);
+            this.Controls.Add(this.matrix7);
+            this.Controls.Add(this.matrix8);
+            this.Controls.Add(this.matrix11);
+            this.Controls.Add(this.matrix12);
+            this.Controls.Add(this.matrix13);
+            this.Controls.Add(this.matrix2);
+            this.Controls.Add(this.matrix6);
+            this.Controls.Add(this.matrix1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox3);
@@ -207,10 +457,10 @@
             this.Controls.Add(this.imageFileName);
             this.Controls.Add(this.LoadImageButton);
             this.Location = new System.Drawing.Point(10, 10);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "INFOIBV";
             this.ShowIcon = false;
             this.Text = "INFOIBV";
+            this.Load += new System.EventHandler(this.INFOIBV_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -235,6 +485,31 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox matrix1;
+        private System.Windows.Forms.TextBox matrix6;
+        private System.Windows.Forms.TextBox matrix2;
+        private System.Windows.Forms.TextBox matrix13;
+        private System.Windows.Forms.TextBox matrix12;
+        private System.Windows.Forms.TextBox matrix11;
+        private System.Windows.Forms.TextBox matrix8;
+        private System.Windows.Forms.TextBox matrix7;
+        private System.Windows.Forms.TextBox matrix3;
+        private System.Windows.Forms.TextBox matrix4;
+        private System.Windows.Forms.TextBox matrix18;
+        private System.Windows.Forms.TextBox matrix17;
+        private System.Windows.Forms.TextBox matrix16;
+        private System.Windows.Forms.TextBox matrix23;
+        private System.Windows.Forms.TextBox matrix22;
+        private System.Windows.Forms.TextBox matrix21;
+        private System.Windows.Forms.TextBox matrix19;
+        private System.Windows.Forms.TextBox matrix14;
+        private System.Windows.Forms.TextBox matrix9;
+        private System.Windows.Forms.TextBox matrix20;
+        private System.Windows.Forms.TextBox matrix15;
+        private System.Windows.Forms.TextBox matrix10;
+        private System.Windows.Forms.TextBox matrix5;
+        private System.Windows.Forms.TextBox matrix24;
+        private System.Windows.Forms.TextBox matrix25;
     }
 }
 

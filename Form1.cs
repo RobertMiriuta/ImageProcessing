@@ -348,12 +348,16 @@ namespace INFOIBV
                 textBox1.Visible = false;
                 textBox2.Visible = true;
                 textBox3.Visible = true;
+                label1.Visible = true;
+                label2.Visible = true;
             }
             else
             {
                 textBox1.Visible = true;
                 textBox2.Visible = false;
                 textBox3.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
             }
         }
     }

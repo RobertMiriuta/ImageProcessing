@@ -123,6 +123,9 @@ namespace INFOIBV
                 case "median":
                     Image = conversionMedian(Image, Convert.ToInt16(textBox1.Text));
                     break;
+                case "edge detection":
+                    Image = conversionEdgeDetection(Image);
+                    break;
                 default:
                     Console.WriteLine("Nothing matched");
                     break;
@@ -140,6 +143,105 @@ namespace INFOIBV
             
             pictureBox2.Image = (Image)OutputImage;                         // Display output image
             progressBar.Visible = false;                                    // Hide progress bar
+        }
+
+        private Color[,] conversionEdgeDetection(Color[,] image)
+        {
+            int size = 3;
+            int halfSize = (size - 1)/ 2;
+            int[,] sobelFilterX = {{-1, 0, 1}, { -1, 0, 1 }, { -1, 0, 1 } };
+            int[,] sobelFilterY = {{ -1, -2, -1 }, {0, 0, 0 }, { 1, 2, 1 } };
+            Color[,] imageSobelX = new Color[InputImage.Size.Width, InputImage.Size.Height];
+            for (int x = halfSize; x < (InputImage.Size.Width - halfSize); x++)
+            {
+                for (int y = halfSize; y < (InputImage.Size.Height - halfSize); y++)
+                {
+                    double newColor = 0.0;
+                    for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
+                    {
+                        for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
+                        {
+                            Color filterColor = image[x - xFilter, y - yFilter];
+                            newColor += sobelFilterX[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
+
+                        }
+                    }
+
+                    newColor = newColor * 0.25;
+                    if (newColor > 255)
+                    {
+                        newColor = 255;
+                    }
+                    else if(newColor < 0)
+                    {
+                        newColor = 0;
+                    }
+
+                    int convertedNewColor = Convert.ToInt16(newColor);
+                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
+                    imageSobelX[x - halfSize, y - halfSize] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                    progressBar.PerformStep();                              // Increment progress bar
+                }
+
+            }
+
+            progressBar.Value = 1;
+            Color[,] imageSobelY = new Color[InputImage.Size.Width, InputImage.Size.Height];
+            for (int x = halfSize; x < (InputImage.Size.Width - halfSize); x++)
+            {
+                for (int y = halfSize; y < (InputImage.Size.Height - halfSize); y++)
+                {
+                    double newColor = 0.0;
+                    for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
+                    {
+                        for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
+                        {
+                            Color filterColor = image[x - xFilter, y - yFilter];
+                            newColor += sobelFilterY[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
+
+                        }
+                    }
+
+                    newColor = newColor * 0.25;
+                    if (newColor > 255)
+                    {
+                        newColor = 255;
+                    }
+                    else if (newColor < 0)
+                    {
+                        newColor = 0;
+                    }
+
+                    int convertedNewColor = Convert.ToInt16(newColor);
+                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
+                    imageSobelY[x - halfSize, y - halfSize] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                }
+
+            }
+
+            progressBar.Value = 1;
+            Color[,] newImage = new Color[InputImage.Size.Width, InputImage.Size.Height];
+            for (int x = halfSize; x < (InputImage.Size.Width - halfSize); x++)
+            {
+                for (int y = halfSize; y < (InputImage.Size.Height - halfSize); y++)
+                {
+                    double newColor = imageSobelX[x, y].R + imageSobelY[x, y].R;
+                    if (newColor > 255)
+                    {
+                        newColor = 255;
+                    }
+                    else if (newColor < 0)
+                    {
+                        newColor = 0;
+                    }
+
+                    int convertedNewColor = Convert.ToInt16(newColor);
+                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
+                    newImage[x - halfSize, y - halfSize] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                }
+
+            }
+            return newImage;
         }
 
         private Color[,] conversionThreshold(Color[,] image, int threshold)

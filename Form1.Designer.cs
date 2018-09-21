@@ -467,7 +467,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.histoIn.Series.Add(series1);
-            this.histoIn.Size = new System.Drawing.Size(681, 347);
+            this.histoIn.Size = new System.Drawing.Size(681, 187);
             this.histoIn.TabIndex = 41;
             this.histoIn.Text = "chart1";
             this.histoIn.Click += new System.EventHandler(this.histoIn_Click);
@@ -484,7 +484,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.histoOut.Series.Add(series2);
-            this.histoOut.Size = new System.Drawing.Size(685, 347);
+            this.histoOut.Size = new System.Drawing.Size(685, 187);
             this.histoOut.TabIndex = 42;
             this.histoOut.Text = "chart2";
             this.histoOut.Click += new System.EventHandler(this.histoOut_Click);

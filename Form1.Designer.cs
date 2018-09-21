@@ -28,6 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.LoadImageButton = new System.Windows.Forms.Button();
             this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.imageFileName = new System.Windows.Forms.TextBox();
@@ -68,14 +86,26 @@
             this.matrix5 = new System.Windows.Forms.TextBox();
             this.matrix24 = new System.Windows.Forms.TextBox();
             this.matrix25 = new System.Windows.Forms.TextBox();
+            this.histoInR = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoOutR = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoInB = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoInG = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoOutB = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoOutG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoInR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOutR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoInB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoInG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOutB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOutG)).BeginInit();
             this.SuspendLayout();
             // 
             // LoadImageButton
             // 
             this.LoadImageButton.Location = new System.Drawing.Point(16, 15);
-            this.LoadImageButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoadImageButton.Margin = new System.Windows.Forms.Padding(4);
             this.LoadImageButton.Name = "LoadImageButton";
             this.LoadImageButton.Size = new System.Drawing.Size(131, 28);
             this.LoadImageButton.TabIndex = 0;
@@ -92,7 +122,7 @@
             // imageFileName
             // 
             this.imageFileName.Location = new System.Drawing.Point(155, 17);
-            this.imageFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.imageFileName.Margin = new System.Windows.Forms.Padding(4);
             this.imageFileName.Name = "imageFileName";
             this.imageFileName.ReadOnly = true;
             this.imageFileName.Size = new System.Drawing.Size(368, 22);
@@ -101,7 +131,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(17, 55);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(683, 630);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -111,7 +141,7 @@
             // applyButton
             // 
             this.applyButton.Location = new System.Drawing.Point(856, 15);
-            this.applyButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.applyButton.Margin = new System.Windows.Forms.Padding(4);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(137, 28);
             this.applyButton.TabIndex = 3;
@@ -127,7 +157,7 @@
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(1264, 14);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(127, 28);
             this.saveButton.TabIndex = 4;
@@ -138,7 +168,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Location = new System.Drawing.Point(708, 55);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(683, 630);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -148,7 +178,7 @@
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(1001, 17);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(255, 25);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -223,7 +253,7 @@
             // matrix1
             // 
             this.matrix1.Location = new System.Drawing.Point(1475, 151);
-            this.matrix1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix1.Margin = new System.Windows.Forms.Padding(4);
             this.matrix1.Name = "matrix1";
             this.matrix1.Size = new System.Drawing.Size(29, 22);
             this.matrix1.TabIndex = 14;
@@ -232,7 +262,7 @@
             // matrix6
             // 
             this.matrix6.Location = new System.Drawing.Point(1475, 183);
-            this.matrix6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix6.Margin = new System.Windows.Forms.Padding(4);
             this.matrix6.Name = "matrix6";
             this.matrix6.Size = new System.Drawing.Size(29, 22);
             this.matrix6.TabIndex = 15;
@@ -241,7 +271,7 @@
             // matrix2
             // 
             this.matrix2.Location = new System.Drawing.Point(1513, 151);
-            this.matrix2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix2.Margin = new System.Windows.Forms.Padding(4);
             this.matrix2.Name = "matrix2";
             this.matrix2.Size = new System.Drawing.Size(29, 22);
             this.matrix2.TabIndex = 16;
@@ -250,7 +280,7 @@
             // matrix13
             // 
             this.matrix13.Location = new System.Drawing.Point(1552, 215);
-            this.matrix13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix13.Margin = new System.Windows.Forms.Padding(4);
             this.matrix13.Name = "matrix13";
             this.matrix13.Size = new System.Drawing.Size(29, 22);
             this.matrix13.TabIndex = 19;
@@ -259,7 +289,7 @@
             // matrix12
             // 
             this.matrix12.Location = new System.Drawing.Point(1513, 215);
-            this.matrix12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix12.Margin = new System.Windows.Forms.Padding(4);
             this.matrix12.Name = "matrix12";
             this.matrix12.Size = new System.Drawing.Size(29, 22);
             this.matrix12.TabIndex = 20;
@@ -268,7 +298,7 @@
             // matrix11
             // 
             this.matrix11.Location = new System.Drawing.Point(1475, 215);
-            this.matrix11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix11.Margin = new System.Windows.Forms.Padding(4);
             this.matrix11.Name = "matrix11";
             this.matrix11.Size = new System.Drawing.Size(29, 22);
             this.matrix11.TabIndex = 21;
@@ -277,7 +307,7 @@
             // matrix8
             // 
             this.matrix8.Location = new System.Drawing.Point(1552, 183);
-            this.matrix8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix8.Margin = new System.Windows.Forms.Padding(4);
             this.matrix8.Name = "matrix8";
             this.matrix8.Size = new System.Drawing.Size(29, 22);
             this.matrix8.TabIndex = 22;
@@ -286,7 +316,7 @@
             // matrix7
             // 
             this.matrix7.Location = new System.Drawing.Point(1513, 183);
-            this.matrix7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix7.Margin = new System.Windows.Forms.Padding(4);
             this.matrix7.Name = "matrix7";
             this.matrix7.Size = new System.Drawing.Size(29, 22);
             this.matrix7.TabIndex = 23;
@@ -295,7 +325,7 @@
             // matrix3
             // 
             this.matrix3.Location = new System.Drawing.Point(1552, 151);
-            this.matrix3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix3.Margin = new System.Windows.Forms.Padding(4);
             this.matrix3.Name = "matrix3";
             this.matrix3.Size = new System.Drawing.Size(29, 22);
             this.matrix3.TabIndex = 24;
@@ -304,7 +334,7 @@
             // matrix4
             // 
             this.matrix4.Location = new System.Drawing.Point(1591, 151);
-            this.matrix4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix4.Margin = new System.Windows.Forms.Padding(4);
             this.matrix4.Name = "matrix4";
             this.matrix4.Size = new System.Drawing.Size(29, 22);
             this.matrix4.TabIndex = 25;
@@ -313,7 +343,7 @@
             // matrix18
             // 
             this.matrix18.Location = new System.Drawing.Point(1552, 247);
-            this.matrix18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix18.Margin = new System.Windows.Forms.Padding(4);
             this.matrix18.Name = "matrix18";
             this.matrix18.Size = new System.Drawing.Size(29, 22);
             this.matrix18.TabIndex = 26;
@@ -322,7 +352,7 @@
             // matrix17
             // 
             this.matrix17.Location = new System.Drawing.Point(1513, 247);
-            this.matrix17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix17.Margin = new System.Windows.Forms.Padding(4);
             this.matrix17.Name = "matrix17";
             this.matrix17.Size = new System.Drawing.Size(29, 22);
             this.matrix17.TabIndex = 27;
@@ -331,7 +361,7 @@
             // matrix16
             // 
             this.matrix16.Location = new System.Drawing.Point(1475, 247);
-            this.matrix16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix16.Margin = new System.Windows.Forms.Padding(4);
             this.matrix16.Name = "matrix16";
             this.matrix16.Size = new System.Drawing.Size(29, 22);
             this.matrix16.TabIndex = 28;
@@ -340,7 +370,7 @@
             // matrix23
             // 
             this.matrix23.Location = new System.Drawing.Point(1552, 279);
-            this.matrix23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix23.Margin = new System.Windows.Forms.Padding(4);
             this.matrix23.Name = "matrix23";
             this.matrix23.Size = new System.Drawing.Size(29, 22);
             this.matrix23.TabIndex = 29;
@@ -349,7 +379,7 @@
             // matrix22
             // 
             this.matrix22.Location = new System.Drawing.Point(1513, 279);
-            this.matrix22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix22.Margin = new System.Windows.Forms.Padding(4);
             this.matrix22.Name = "matrix22";
             this.matrix22.Size = new System.Drawing.Size(29, 22);
             this.matrix22.TabIndex = 30;
@@ -358,7 +388,7 @@
             // matrix21
             // 
             this.matrix21.Location = new System.Drawing.Point(1475, 279);
-            this.matrix21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix21.Margin = new System.Windows.Forms.Padding(4);
             this.matrix21.Name = "matrix21";
             this.matrix21.Size = new System.Drawing.Size(29, 22);
             this.matrix21.TabIndex = 31;
@@ -367,7 +397,7 @@
             // matrix19
             // 
             this.matrix19.Location = new System.Drawing.Point(1591, 247);
-            this.matrix19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix19.Margin = new System.Windows.Forms.Padding(4);
             this.matrix19.Name = "matrix19";
             this.matrix19.Size = new System.Drawing.Size(29, 22);
             this.matrix19.TabIndex = 32;
@@ -376,7 +406,7 @@
             // matrix14
             // 
             this.matrix14.Location = new System.Drawing.Point(1591, 215);
-            this.matrix14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix14.Margin = new System.Windows.Forms.Padding(4);
             this.matrix14.Name = "matrix14";
             this.matrix14.Size = new System.Drawing.Size(29, 22);
             this.matrix14.TabIndex = 33;
@@ -385,7 +415,7 @@
             // matrix9
             // 
             this.matrix9.Location = new System.Drawing.Point(1591, 183);
-            this.matrix9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix9.Margin = new System.Windows.Forms.Padding(4);
             this.matrix9.Name = "matrix9";
             this.matrix9.Size = new System.Drawing.Size(29, 22);
             this.matrix9.TabIndex = 34;
@@ -394,7 +424,7 @@
             // matrix20
             // 
             this.matrix20.Location = new System.Drawing.Point(1629, 247);
-            this.matrix20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix20.Margin = new System.Windows.Forms.Padding(4);
             this.matrix20.Name = "matrix20";
             this.matrix20.Size = new System.Drawing.Size(29, 22);
             this.matrix20.TabIndex = 35;
@@ -403,7 +433,7 @@
             // matrix15
             // 
             this.matrix15.Location = new System.Drawing.Point(1629, 215);
-            this.matrix15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix15.Margin = new System.Windows.Forms.Padding(4);
             this.matrix15.Name = "matrix15";
             this.matrix15.Size = new System.Drawing.Size(29, 22);
             this.matrix15.TabIndex = 36;
@@ -412,7 +442,7 @@
             // matrix10
             // 
             this.matrix10.Location = new System.Drawing.Point(1629, 183);
-            this.matrix10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix10.Margin = new System.Windows.Forms.Padding(4);
             this.matrix10.Name = "matrix10";
             this.matrix10.Size = new System.Drawing.Size(29, 22);
             this.matrix10.TabIndex = 37;
@@ -421,7 +451,7 @@
             // matrix5
             // 
             this.matrix5.Location = new System.Drawing.Point(1629, 151);
-            this.matrix5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix5.Margin = new System.Windows.Forms.Padding(4);
             this.matrix5.Name = "matrix5";
             this.matrix5.Size = new System.Drawing.Size(29, 22);
             this.matrix5.TabIndex = 38;
@@ -430,7 +460,7 @@
             // matrix24
             // 
             this.matrix24.Location = new System.Drawing.Point(1591, 279);
-            this.matrix24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix24.Margin = new System.Windows.Forms.Padding(4);
             this.matrix24.Name = "matrix24";
             this.matrix24.Size = new System.Drawing.Size(29, 22);
             this.matrix24.TabIndex = 39;
@@ -439,17 +469,123 @@
             // matrix25
             // 
             this.matrix25.Location = new System.Drawing.Point(1629, 279);
-            this.matrix25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.matrix25.Margin = new System.Windows.Forms.Padding(4);
             this.matrix25.Name = "matrix25";
             this.matrix25.Size = new System.Drawing.Size(29, 22);
             this.matrix25.TabIndex = 40;
             this.matrix25.Text = "0";
             // 
+            // histoInR
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.histoInR.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.histoInR.Legends.Add(legend1);
+            this.histoInR.Location = new System.Drawing.Point(17, 696);
+            this.histoInR.Name = "histoInR";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.histoInR.Series.Add(series1);
+            this.histoInR.Size = new System.Drawing.Size(205, 151);
+            this.histoInR.TabIndex = 41;
+            this.histoInR.Text = "chart1";
+            this.histoInR.Click += new System.EventHandler(this.histoIn_Click);
+            // 
+            // histoOutR
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.histoOutR.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.histoOutR.Legends.Add(legend2);
+            this.histoOutR.Location = new System.Drawing.Point(706, 696);
+            this.histoOutR.Name = "histoOutR";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.histoOutR.Series.Add(series2);
+            this.histoOutR.Size = new System.Drawing.Size(229, 151);
+            this.histoOutR.TabIndex = 42;
+            this.histoOutR.Text = "chart2";
+            this.histoOutR.Click += new System.EventHandler(this.histoOut_Click);
+            // 
+            // histoInB
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.histoInB.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.histoInB.Legends.Add(legend3);
+            this.histoInB.Location = new System.Drawing.Point(471, 696);
+            this.histoInB.Name = "histoInB";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.histoInB.Series.Add(series3);
+            this.histoInB.Size = new System.Drawing.Size(229, 151);
+            this.histoInB.TabIndex = 43;
+            this.histoInB.Text = "chart1";
+            this.histoInB.Click += new System.EventHandler(this.chart1_Click);
+            // 
+            // histoInG
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.histoInG.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.histoInG.Legends.Add(legend4);
+            this.histoInG.Location = new System.Drawing.Point(228, 696);
+            this.histoInG.Name = "histoInG";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.histoInG.Series.Add(series4);
+            this.histoInG.Size = new System.Drawing.Size(231, 151);
+            this.histoInG.TabIndex = 44;
+            this.histoInG.Text = "chart2";
+            this.histoInG.Click += new System.EventHandler(this.chart2_Click);
+            // 
+            // histoOutB
+            // 
+            chartArea5.Name = "ChartArea1";
+            this.histoOutB.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.histoOutB.Legends.Add(legend5);
+            this.histoOutB.Location = new System.Drawing.Point(1177, 696);
+            this.histoOutB.Name = "histoOutB";
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.histoOutB.Series.Add(series5);
+            this.histoOutB.Size = new System.Drawing.Size(214, 151);
+            this.histoOutB.TabIndex = 45;
+            this.histoOutB.Text = "chart1";
+            // 
+            // histoOutG
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.histoOutG.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.histoOutG.Legends.Add(legend6);
+            this.histoOutG.Location = new System.Drawing.Point(941, 696);
+            this.histoOutG.Name = "histoOutG";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.histoOutG.Series.Add(series6);
+            this.histoOutG.Size = new System.Drawing.Size(230, 151);
+            this.histoOutG.TabIndex = 46;
+            this.histoOutG.Text = "chart2";
+            // 
             // INFOIBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1696, 709);
+            this.ClientSize = new System.Drawing.Size(1696, 1055);
+            this.Controls.Add(this.histoOutG);
+            this.Controls.Add(this.histoOutB);
+            this.Controls.Add(this.histoInG);
+            this.Controls.Add(this.histoInB);
+            this.Controls.Add(this.histoOutR);
+            this.Controls.Add(this.histoInR);
             this.Controls.Add(this.matrix25);
             this.Controls.Add(this.matrix24);
             this.Controls.Add(this.matrix5);
@@ -489,13 +625,19 @@
             this.Controls.Add(this.imageFileName);
             this.Controls.Add(this.LoadImageButton);
             this.Location = new System.Drawing.Point(10, 10);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "INFOIBV";
             this.ShowIcon = false;
             this.Text = "INFOIBV";
             this.Load += new System.EventHandler(this.INFOIBV_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoInR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOutR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoInB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoInG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOutB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOutG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,6 +685,12 @@
         private System.Windows.Forms.TextBox matrix5;
         private System.Windows.Forms.TextBox matrix24;
         private System.Windows.Forms.TextBox matrix25;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoInR;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoOutR;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoInB;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoInG;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoOutB;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoOutG;
     }
 }
 

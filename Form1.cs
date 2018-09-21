@@ -32,7 +32,9 @@ namespace INFOIBV
                     InputImage.Size.Height > 512 || InputImage.Size.Width > 512) // Dimension check
                     MessageBox.Show("Error in image dimensions (have to be > 0 and <= 512)");
                 else
-                    pictureBox1.Image = (Image) InputImage;                 // Display input image
+                {
+                    pictureBox1.Image = (Image)InputImage;                    // Display input image
+                }
             }
         }
 
@@ -620,6 +622,26 @@ namespace INFOIBV
         }
 
         private void INFOIBV_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void histoIn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void histoOut_Click(object sender, EventArgs e)
         {
 
         }

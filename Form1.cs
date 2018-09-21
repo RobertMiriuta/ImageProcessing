@@ -42,8 +42,11 @@ namespace INFOIBV
                     int[] bArray = result.Item3;
 
                     Series rSeries = histoIn.Series.Add("RedHistogram");
+                    rSeries.Color = Color.IndianRed;
                     Series gSeries = histoIn.Series.Add("GreenHistogram");
+                    gSeries.Color = Color.LightSeaGreen;
                     Series bSeries = histoIn.Series.Add("BlueHistogram");
+                    bSeries.Color = Color.DeepSkyBlue;
 
                     int max = 0;
 
@@ -183,8 +186,11 @@ namespace INFOIBV
             int[] bArray = result.Item3;
 
             Series rSeries = histoOut.Series.Add("RedHistogram");
+            rSeries.Color = Color.IndianRed;
             Series gSeries = histoOut.Series.Add("GreenHistogram");
+            gSeries.Color = Color.LightSeaGreen;
             Series bSeries = histoOut.Series.Add("BlueHistogram");
+            bSeries.Color = Color.DeepSkyBlue;
 
             int max = 0;
 

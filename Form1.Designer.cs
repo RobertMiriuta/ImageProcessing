@@ -34,18 +34,6 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.LoadImageButton = new System.Windows.Forms.Button();
             this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.imageFileName = new System.Windows.Forms.TextBox();
@@ -86,20 +74,12 @@
             this.matrix5 = new System.Windows.Forms.TextBox();
             this.matrix24 = new System.Windows.Forms.TextBox();
             this.matrix25 = new System.Windows.Forms.TextBox();
-            this.histoInR = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.histoOutR = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.histoInB = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.histoInG = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.histoOutB = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.histoOutG = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoIn = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.histoOut = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoInR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoOutR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoInB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoInG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoOutB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoOutG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoIn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOut)).BeginInit();
             this.SuspendLayout();
             // 
             // LoadImageButton
@@ -475,117 +455,47 @@
             this.matrix25.TabIndex = 40;
             this.matrix25.Text = "0";
             // 
-            // histoInR
+            // histoIn
             // 
             chartArea1.Name = "ChartArea1";
-            this.histoInR.ChartAreas.Add(chartArea1);
+            this.histoIn.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.histoInR.Legends.Add(legend1);
-            this.histoInR.Location = new System.Drawing.Point(17, 696);
-            this.histoInR.Name = "histoInR";
+            this.histoIn.Legends.Add(legend1);
+            this.histoIn.Location = new System.Drawing.Point(17, 696);
+            this.histoIn.Name = "histoIn";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.histoInR.Series.Add(series1);
-            this.histoInR.Size = new System.Drawing.Size(205, 151);
-            this.histoInR.TabIndex = 41;
-            this.histoInR.Text = "chart1";
-            this.histoInR.Click += new System.EventHandler(this.histoIn_Click);
+            this.histoIn.Series.Add(series1);
+            this.histoIn.Size = new System.Drawing.Size(681, 347);
+            this.histoIn.TabIndex = 41;
+            this.histoIn.Text = "chart1";
+            this.histoIn.Click += new System.EventHandler(this.histoIn_Click);
             // 
-            // histoOutR
+            // histoOut
             // 
             chartArea2.Name = "ChartArea1";
-            this.histoOutR.ChartAreas.Add(chartArea2);
+            this.histoOut.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
-            this.histoOutR.Legends.Add(legend2);
-            this.histoOutR.Location = new System.Drawing.Point(706, 696);
-            this.histoOutR.Name = "histoOutR";
+            this.histoOut.Legends.Add(legend2);
+            this.histoOut.Location = new System.Drawing.Point(708, 696);
+            this.histoOut.Name = "histoOut";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.histoOutR.Series.Add(series2);
-            this.histoOutR.Size = new System.Drawing.Size(229, 151);
-            this.histoOutR.TabIndex = 42;
-            this.histoOutR.Text = "chart2";
-            this.histoOutR.Click += new System.EventHandler(this.histoOut_Click);
-            // 
-            // histoInB
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.histoInB.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.histoInB.Legends.Add(legend3);
-            this.histoInB.Location = new System.Drawing.Point(471, 696);
-            this.histoInB.Name = "histoInB";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.histoInB.Series.Add(series3);
-            this.histoInB.Size = new System.Drawing.Size(229, 151);
-            this.histoInB.TabIndex = 43;
-            this.histoInB.Text = "chart1";
-            this.histoInB.Click += new System.EventHandler(this.chart1_Click);
-            // 
-            // histoInG
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.histoInG.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.histoInG.Legends.Add(legend4);
-            this.histoInG.Location = new System.Drawing.Point(228, 696);
-            this.histoInG.Name = "histoInG";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.histoInG.Series.Add(series4);
-            this.histoInG.Size = new System.Drawing.Size(231, 151);
-            this.histoInG.TabIndex = 44;
-            this.histoInG.Text = "chart2";
-            this.histoInG.Click += new System.EventHandler(this.chart2_Click);
-            // 
-            // histoOutB
-            // 
-            chartArea5.Name = "ChartArea1";
-            this.histoOutB.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.histoOutB.Legends.Add(legend5);
-            this.histoOutB.Location = new System.Drawing.Point(1177, 696);
-            this.histoOutB.Name = "histoOutB";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.histoOutB.Series.Add(series5);
-            this.histoOutB.Size = new System.Drawing.Size(214, 151);
-            this.histoOutB.TabIndex = 45;
-            this.histoOutB.Text = "chart1";
-            // 
-            // histoOutG
-            // 
-            chartArea6.Name = "ChartArea1";
-            this.histoOutG.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.histoOutG.Legends.Add(legend6);
-            this.histoOutG.Location = new System.Drawing.Point(941, 696);
-            this.histoOutG.Name = "histoOutG";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.histoOutG.Series.Add(series6);
-            this.histoOutG.Size = new System.Drawing.Size(230, 151);
-            this.histoOutG.TabIndex = 46;
-            this.histoOutG.Text = "chart2";
+            this.histoOut.Series.Add(series2);
+            this.histoOut.Size = new System.Drawing.Size(685, 347);
+            this.histoOut.TabIndex = 42;
+            this.histoOut.Text = "chart2";
+            this.histoOut.Click += new System.EventHandler(this.histoOut_Click);
             // 
             // INFOIBV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1696, 1055);
-            this.Controls.Add(this.histoOutG);
-            this.Controls.Add(this.histoOutB);
-            this.Controls.Add(this.histoInG);
-            this.Controls.Add(this.histoInB);
-            this.Controls.Add(this.histoOutR);
-            this.Controls.Add(this.histoInR);
+            this.Controls.Add(this.histoOut);
+            this.Controls.Add(this.histoIn);
             this.Controls.Add(this.matrix25);
             this.Controls.Add(this.matrix24);
             this.Controls.Add(this.matrix5);
@@ -632,12 +542,8 @@
             this.Load += new System.EventHandler(this.INFOIBV_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoInR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoOutR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoInB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoInG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoOutB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoOutG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoIn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histoOut)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -685,12 +591,8 @@
         private System.Windows.Forms.TextBox matrix5;
         private System.Windows.Forms.TextBox matrix24;
         private System.Windows.Forms.TextBox matrix25;
-        private System.Windows.Forms.DataVisualization.Charting.Chart histoInR;
-        private System.Windows.Forms.DataVisualization.Charting.Chart histoOutR;
-        private System.Windows.Forms.DataVisualization.Charting.Chart histoInB;
-        private System.Windows.Forms.DataVisualization.Charting.Chart histoInG;
-        private System.Windows.Forms.DataVisualization.Charting.Chart histoOutB;
-        private System.Windows.Forms.DataVisualization.Charting.Chart histoOutG;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoIn;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histoOut;
     }
 }
 

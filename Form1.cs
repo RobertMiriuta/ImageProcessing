@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace INFOIBV
 {
@@ -22,6 +23,7 @@ namespace INFOIBV
 
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
+            histoIn.Series.Clear();
            if (openImageDialog.ShowDialog() == DialogResult.OK)             // Open File Dialog
             {
                 string file = openImageDialog.FileName;                     // Get the file name
@@ -34,6 +36,35 @@ namespace INFOIBV
                 else
                 {
                     pictureBox1.Image = (Image)InputImage;                    // Display input image
+                    Tuple<int[], int[], int[]> result = calculateHistogramFromImage(InputImage);
+                    int[] rArray = result.Item1;
+                    int[] gArray = result.Item2;
+                    int[] bArray = result.Item3;
+
+                    Series rSeries = histoIn.Series.Add("RedHistogram");
+                    Series gSeries = histoIn.Series.Add("GreenHistogram");
+                    Series bSeries = histoIn.Series.Add("BlueHistogram");
+
+                    int max = 0;
+
+                    for (int i = 0; i < 256; i++)
+                    {
+                        rSeries.Points.Add(new DataPoint(i, rArray[i]));
+                        gSeries.Points.Add(new DataPoint(i, gArray[i]));
+                        bSeries.Points.Add(new DataPoint(i, bArray[i]));
+                        if (max < rArray[i])
+                            max = rArray[i];
+                        if (max < gArray[i])
+                            max = gArray[i];
+                        if (max < bArray[i])
+                            max = bArray[i];
+
+                    }
+                    histoIn.ChartAreas[0].AxisX.Minimum = 0;
+                    histoIn.ChartAreas[0].AxisX.Maximum = 255;
+
+                    histoIn.ChartAreas[0].AxisY.Minimum = 0;
+                    histoIn.ChartAreas[0].AxisY.Maximum = max;
                 }
             }
         }
@@ -88,7 +119,7 @@ namespace INFOIBV
             boxes.Add(matrix24);
             boxes.Add(matrix25);
 
-            
+
             //==========================================================================================
             // TODO: include here your own code
             // example: create a negative image
@@ -132,7 +163,7 @@ namespace INFOIBV
                     Console.WriteLine("Nothing matched");
                     break;
             }
-           
+
 
             // Copy array to output Bitmap
             for (int x = 0; x < Image.GetLength(0); x++)
@@ -142,8 +173,41 @@ namespace INFOIBV
                     OutputImage.SetPixel(x, y, Image[x, y]);               // Set the pixel color at coordinate (x,y)
                 }
             }
-            
+
             pictureBox2.Image = (Image)OutputImage;                         // Display output image
+
+            histoOut.Series.Clear();
+            Tuple<int[], int[], int[]> result = calculateHistogramFromImage(OutputImage); //Histograms
+            int[] rArray = result.Item1;
+            int[] gArray = result.Item2;
+            int[] bArray = result.Item3;
+
+            Series rSeries = histoOut.Series.Add("RedHistogram");
+            Series gSeries = histoOut.Series.Add("GreenHistogram");
+            Series bSeries = histoOut.Series.Add("BlueHistogram");
+
+            int max = 0;
+
+            for (int i = 0; i < 256; i++)
+            {
+                Console.WriteLine(i);
+                rSeries.Points.Add(new DataPoint(i, rArray[i]));
+                gSeries.Points.Add(new DataPoint(i, gArray[i]));
+                bSeries.Points.Add(new DataPoint(i, bArray[i]));
+                if (max < rArray[i])
+                    max = rArray[i];
+                if (max < gArray[i])
+                    max = gArray[i];
+                if (max < bArray[i])
+                    max = bArray[i];
+
+            }
+            histoOut.ChartAreas[0].AxisX.Minimum = 0;
+            histoOut.ChartAreas[0].AxisX.Maximum = 255;
+
+            histoOut.ChartAreas[0].AxisY.Minimum = 0;
+            histoOut.ChartAreas[0].AxisY.Maximum = histoIn.ChartAreas[0].AxisY.Maximum;
+
             progressBar.Visible = false;                                    // Hide progress bar
         }
 

@@ -594,7 +594,7 @@ namespace INFOIBV
             return 0;
         }
 
-        private Tuple<int[], int[], int[]> calculateHistogramFromImage(Bitmap image)s
+        private Tuple<int[], int[], int[]> calculateHistogramFromImage(Bitmap image)
         {
             Color[,] Image = new Color[image.Size.Width, image.Size.Height]; // Create array to speed-up operations (Bitmap functions are very slow)
             // Copy input Bitmap to array            

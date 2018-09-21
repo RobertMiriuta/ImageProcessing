@@ -594,6 +594,25 @@ namespace INFOIBV
             return 0;
         }
 
+        private Tuple<int[], int[], int[]> calculateHistogramFromImage(Color[,] image)
+        {
+            int[] histogramRed = new int[256];
+            int[] histogramGreen = new int[256];
+            int[] histogramBlue = new int[256];
+            for (int x = 0; x < InputImage.Size.Width; x++)
+            {
+                for (int y = 0; y < InputImage.Size.Height; y++)
+                {
+                    Color pixelColor = image[x, y];                         // Get the pixel color at coordinate (x,y)
+                    histogramRed[pixelColor.R]++;
+                    histogramGreen[pixelColor.G]++;
+                    histogramBlue[pixelColor.B]++;
+                }
+
+            }
+            return Tuple.Create(histogramRed, histogramGreen, histogramBlue);
+        }
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (OutputImage == null) return;                                // Get out if no output image

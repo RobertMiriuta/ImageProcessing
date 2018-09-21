@@ -218,92 +218,13 @@ namespace INFOIBV
 
         private Color[,] conversionEdgeDetection(Color[,] image)
         {
-            int[,] sobelFilterX = {{-1, 0, 1}, { -1, 0, 1 }, { -1, 0, 1 } };
-            int[,] sobelFilterY = {{ -1, -2, -1 }, {0, 0, 0 }, { 1, 2, 1 } };
-            int size = sobelFilterY.GetLength(0);
-            int halfSize = (size - 1) / 2;
-            Color[,] imageSobelX = new Color[InputImage.Size.Width, InputImage.Size.Height];
-            for (int x = 0; x < InputImage.Size.Width; x++)
-            {
-                for (int y = 0; y < InputImage.Size.Height; y++)
-                {
-                    double newColor = 0.0;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
-                    {
-                        newColor = 128.0;
-                    }
-                    else
-                    {
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
-                        {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
-                            {
-                                Color filterColor = image[x - xFilter, y - yFilter];
-                                newColor += sobelFilterX[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
 
-                            }
-                        }
-
-                        newColor = newColor * 0.25;
-                        if (newColor > 255)
-                        {
-                            newColor = 255;
-                        }
-                        else if (newColor < 0)
-                        {
-                            newColor = 0;
-                        }
-
-                        
-                    }
-                    int convertedNewColor = Convert.ToInt16(newColor);
-                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
-                    imageSobelX[x, y] = updatedColor; // Set the new pixel color at coordinate (x,y)
-                    progressBar.PerformStep(); // Increment progress bar
-                }
-            }
-
-            progressBar.Value = 1;
-            Color[,] imageSobelY = new Color[InputImage.Size.Width, InputImage.Size.Height];
-            for (int x = 0; x < InputImage.Size.Width; x++)
-            {
-                for (int y = 0; y < InputImage.Size.Height; y++)
-                {
-                    double newColor = 0.0;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
-                    {
-                        newColor = 128.0;
-                    }
-                    else
-                    {
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
-                        {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
-                            {
-                                Color filterColor = image[x - xFilter, y - yFilter];
-                                newColor += sobelFilterY[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
-
-                            }
-                        }
-
-                        newColor = newColor * 0.25;
-                        if (newColor > 255)
-                        {
-                            newColor = 255;
-                        }
-                        else if (newColor < 0)
-                        {
-                            newColor = 0;
-                        }
-                    }
-                    int convertedNewColor = Convert.ToInt16(newColor);
-                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
-                    imageSobelY[x, y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
-                }
-
-            }
+            double[,] sobelFilterX = {{-1, 0, 1}, { -1, 0, 1 }, { -1, 0, 1 } };
+            double[,] sobelFilterY = {{ -1, -2, -1 }, {0, 0, 0 }, { 1, 2, 1 } };
+            int xBorder = (sobelFilterX.Length - 1)/ 2;
+            int yBorder = (sobelFilterY.Length - 1)/ 2;
+            Color[,] imageSobelX = applyFilterToImage(image, sobelFilterX);
+            Color[,] imageSobelY = applyFilterToImage(image, sobelFilterY);
 
             progressBar.Value = 1;
             Color[,] newImage = new Color[InputImage.Size.Width, InputImage.Size.Height];
@@ -312,8 +233,8 @@ namespace INFOIBV
                 for (int y = 0; y < InputImage.Size.Height; y++)
                 {
                     double newColor;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
+                    if (x < xBorder || y < yBorder || y >= InputImage.Size.Height - yBorder ||
+                        x >= InputImage.Size.Width - xBorder)
                     {
                         newColor = 128.0;
                     }
@@ -333,6 +254,7 @@ namespace INFOIBV
                     int convertedNewColor = Convert.ToInt16(newColor);
                     Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
                     newImage[x,y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                    progressBar.PerformStep();                              // Increment progress bar
                 }
 
             }
@@ -587,6 +509,7 @@ namespace INFOIBV
 
         private Color[,] applyFilterToImage(Color[,] image, double[,] filter)
         {
+            progressBar.Value = 1;
             int halfSize = (filter.GetLength(0) - 1) / 2;
             int xBorder = (filter.GetLength(0) - 1) / 2;
             int yBorder = (filter.GetLength(1) - 1) / 2;
@@ -598,8 +521,8 @@ namespace INFOIBV
                     double updatedRed = 0.0;
                     double updatedGreen = 0.0;
                     double updatedBlue = 0.0;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
+                    if (x < xBorder || y < yBorder || y >= InputImage.Size.Height - yBorder ||
+                        x >= InputImage.Size.Width - xBorder)
                     {
                         updatedBlue = 128;
                         updatedGreen = 128;
@@ -608,14 +531,14 @@ namespace INFOIBV
                     }
                     else
                     {
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
+                        for (int xFilter = -xBorder; xFilter <= xBorder; xFilter++)
                         {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
+                            for (int yFilter = -yBorder; yFilter <= yBorder; yFilter++)
                             {
                                 Color filterColor = image[x - xFilter, y - yFilter];
-                                updatedRed += filter[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
-                                updatedGreen += filter[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.G;
-                                updatedBlue += filter[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.B;
+                                updatedRed += filter[(xFilter + xBorder), (yFilter + yBorder)] * filterColor.R;
+                                updatedGreen += filter[(xFilter + xBorder), (yFilter + yBorder)] * filterColor.G;
+                                updatedBlue += filter[(xFilter + xBorder), (yFilter + yBorder)] * filterColor.B;
                             }
                         }
 
@@ -716,31 +639,6 @@ namespace INFOIBV
                 label1.Visible = false;
                 label2.Visible = false;
             }
-        }
-
-        private void INFOIBV_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void histoIn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void histoOut_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -196,7 +196,6 @@ namespace INFOIBV
 
             for (int i = 0; i < 256; i++)
             {
-                Console.WriteLine(i);
                 rSeries.Points.Add(new DataPoint(i, rArray[i]));
                 gSeries.Points.Add(new DataPoint(i, gArray[i]));
                 bSeries.Points.Add(new DataPoint(i, bArray[i]));

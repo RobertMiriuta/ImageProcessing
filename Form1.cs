@@ -44,6 +44,14 @@ namespace INFOIBV
             if (OutputImage != null) OutputImage.Dispose();                 // Reset output image
             OutputImage = new Bitmap(InputImage.Size.Width, InputImage.Size.Height); // Create new output image
             Color[,] Image = new Color[InputImage.Size.Width, InputImage.Size.Height]; // Create array to speed-up operations (Bitmap functions are very slow)
+            // Copy input Bitmap to array            
+            for (int x = 0; x < InputImage.Size.Width; x++)
+            {
+                for (int y = 0; y < InputImage.Size.Height; y++)
+                {
+                    Image[x, y] = InputImage.GetPixel(x, y);                // Set pixel color in array at (x,y)
+                }
+            }
 
             // Setup progress bar
             progressBar.Visible = true;
@@ -80,15 +88,7 @@ namespace INFOIBV
             boxes.Add(matrix24);
             boxes.Add(matrix25);
 
-            // Copy input Bitmap to array            
-            for (int x = 0; x < InputImage.Size.Width; x++)
-            {
-                for (int y = 0; y < InputImage.Size.Height; y++)
-                {
-                    Image[x, y] = InputImage.GetPixel(x, y);                // Set pixel color in array at (x,y)
-                }
-            }
-
+            
             //==========================================================================================
             // TODO: include here your own code
             // example: create a negative image
@@ -594,8 +594,17 @@ namespace INFOIBV
             return 0;
         }
 
-        private Tuple<int[], int[], int[]> calculateHistogramFromImage(Color[,] image)
+        private Tuple<int[], int[], int[]> calculateHistogramFromImage(Bitmap image)
         {
+            Color[,] Image = new Color[image.Size.Width, image.Size.Height]; // Create array to speed-up operations (Bitmap functions are very slow)
+            // Copy input Bitmap to array            
+            for (int x = 0; x < image.Size.Width; x++)
+            {
+                for (int y = 0; y < image.Size.Height; y++)
+                {
+                    Image[x, y] = image.GetPixel(x, y);                // Set pixel color in array at (x,y)
+                }
+            }
             int[] histogramRed = new int[256];
             int[] histogramGreen = new int[256];
             int[] histogramBlue = new int[256];
@@ -603,7 +612,7 @@ namespace INFOIBV
             {
                 for (int y = 0; y < InputImage.Size.Height; y++)
                 {
-                    Color pixelColor = image[x, y];                         // Get the pixel color at coordinate (x,y)
+                    Color pixelColor = Image[x, y];                         // Get the pixel color at coordinate (x,y)
                     histogramRed[pixelColor.R]++;
                     histogramGreen[pixelColor.G]++;
                     histogramBlue[pixelColor.B]++;

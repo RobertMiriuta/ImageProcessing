@@ -600,7 +600,7 @@ namespace INFOIBV
             // Copy input Bitmap to array            
             for (int x = 0; x < image.Size.Width; x++)
             {
-                for (int y = 0; y < image.Size.Height; y++)d
+                for (int y = 0; y < image.Size.Height; y++)
                 {
                     Image[x, y] = image.GetPixel(x, y);                // Set pixel color in array at (x,y)
                 }

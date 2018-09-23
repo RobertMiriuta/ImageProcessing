@@ -8,11 +8,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Forms.VisualStyles;
 
 namespace INFOIBV
 {
     public partial class INFOIBV : Form
     {
+        private int currentImageWidth;
+        private int currentImageHeight;
         private Bitmap InputImage;
         private Bitmap OutputImage;
 
@@ -76,8 +79,11 @@ namespace INFOIBV
         {
             if (InputImage == null) return;                                 // Get out if no input image
             if (OutputImage != null) OutputImage.Dispose();                 // Reset output image
+            currentImageWidth = InputImage.Size.Width;                      //Saves the image width in a global variable, for usage later
+            currentImageHeight = InputImage.Size.Height;                    ////Saves the image height in a global variable, for usage later
             OutputImage = new Bitmap(InputImage.Size.Width, InputImage.Size.Height); // Create new output image
             Color[,] Image = new Color[InputImage.Size.Width, InputImage.Size.Height]; // Create array to speed-up operations (Bitmap functions are very slow)
+            
             // Copy input Bitmap to array            
             for (int x = 0; x < InputImage.Size.Width; x++)
             {
@@ -121,11 +127,8 @@ namespace INFOIBV
             boxes.Add(matrix23);
             boxes.Add(matrix24);
             boxes.Add(matrix25);
-
-
-            //==========================================================================================
-            // TODO: include here your own code
-            // example: create a negative image
+            
+            //Reads the combobox to decide which conversion should be done on the input image.
             switch (comboBox1.Text)
             {
                 case "grayscale":
@@ -180,7 +183,7 @@ namespace INFOIBV
             pictureBox2.Image = (Image)OutputImage;                         // Display output image
 
             histoOut.Series.Clear();
-            Tuple<int[], int[], int[]> result = calculateHistogramFromImage(OutputImage); //Histograms
+            Tuple<int[], int[], int[]> result = calculateHistogramFromImage(OutputImage); //Calculates histogram for the output image.
             int[] rArray = result.Item1;
             int[] gArray = result.Item2;
             int[] bArray = result.Item3;
@@ -216,94 +219,16 @@ namespace INFOIBV
             progressBar.Visible = false;                                    // Hide progress bar
         }
 
+        //This function takes an image and outputs an image with the edge strength per pixel.
         private Color[,] conversionEdgeDetection(Color[,] image)
         {
-            int[,] sobelFilterX = {{-1, 0, 1}, { -1, 0, 1 }, { -1, 0, 1 } };
-            int[,] sobelFilterY = {{ -1, -2, -1 }, {0, 0, 0 }, { 1, 2, 1 } };
-            int size = sobelFilterY.GetLength(0);
-            int halfSize = (size - 1) / 2;
-            Color[,] imageSobelX = new Color[InputImage.Size.Width, InputImage.Size.Height];
-            for (int x = 0; x < InputImage.Size.Width; x++)
-            {
-                for (int y = 0; y < InputImage.Size.Height; y++)
-                {
-                    double newColor = 0.0;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
-                    {
-                        newColor = 128.0;
-                    }
-                    else
-                    {
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
-                        {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
-                            {
-                                Color filterColor = image[x - xFilter, y - yFilter];
-                                newColor += sobelFilterX[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
 
-                            }
-                        }
-
-                        newColor = newColor * 0.25;
-                        if (newColor > 255)
-                        {
-                            newColor = 255;
-                        }
-                        else if (newColor < 0)
-                        {
-                            newColor = 0;
-                        }
-
-                        
-                    }
-                    int convertedNewColor = Convert.ToInt16(newColor);
-                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
-                    imageSobelX[x, y] = updatedColor; // Set the new pixel color at coordinate (x,y)
-                    progressBar.PerformStep(); // Increment progress bar
-                }
-            }
-
-            progressBar.Value = 1;
-            Color[,] imageSobelY = new Color[InputImage.Size.Width, InputImage.Size.Height];
-            for (int x = 0; x < InputImage.Size.Width; x++)
-            {
-                for (int y = 0; y < InputImage.Size.Height; y++)
-                {
-                    double newColor = 0.0;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
-                    {
-                        newColor = 128.0;
-                    }
-                    else
-                    {
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
-                        {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
-                            {
-                                Color filterColor = image[x - xFilter, y - yFilter];
-                                newColor += sobelFilterY[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
-
-                            }
-                        }
-
-                        newColor = newColor * 0.25;
-                        if (newColor > 255)
-                        {
-                            newColor = 255;
-                        }
-                        else if (newColor < 0)
-                        {
-                            newColor = 0;
-                        }
-                    }
-                    int convertedNewColor = Convert.ToInt16(newColor);
-                    Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
-                    imageSobelY[x, y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
-                }
-
-            }
+            double[,] sobelFilterX = {{-1, 0, 1}, { -1, 0, 1 }, { -1, 0, 1 } };
+            double[,] sobelFilterY = {{ -1, -2, -1 }, {0, 0, 0 }, { 1, 2, 1 } };
+            int xBorder = (sobelFilterX.Length - 1)/ 2;
+            int yBorder = (sobelFilterY.Length - 1)/ 2;
+            Color[,] imageSobelX = applyFilterToImage(image, sobelFilterX);
+            Color[,] imageSobelY = applyFilterToImage(image, sobelFilterY);
 
             progressBar.Value = 1;
             Color[,] newImage = new Color[InputImage.Size.Width, InputImage.Size.Height];
@@ -312,8 +237,7 @@ namespace INFOIBV
                 for (int y = 0; y < InputImage.Size.Height; y++)
                 {
                     double newColor;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
+                    if (isPointerOutOfBounds(x,y,xBorder,yBorder))
                     {
                         newColor = 128.0;
                     }
@@ -333,12 +257,14 @@ namespace INFOIBV
                     int convertedNewColor = Convert.ToInt16(newColor);
                     Color updatedColor = Color.FromArgb(convertedNewColor, convertedNewColor, convertedNewColor);
                     newImage[x,y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
+                    progressBar.PerformStep();                              // Increment progress bar
                 }
 
             }
             return newImage;
         }
 
+        //This function takes an image and a threshold, anything below the threshold is mapped to 0 (black) anything above to 255 (white)
         private Color[,] conversionThreshold(Color[,] image, int threshold)
         {
             image = conversionGrayscale(image); // Convert image to grayscale, even though it already is a grayscale image.
@@ -358,6 +284,7 @@ namespace INFOIBV
             return image;
         }
 
+        //This function takes an image and outputs a grayscale image.
         private Color[,] conversionGrayscale(Color[,] image)
         {
             for (int x = 0; x < InputImage.Size.Width; x++)
@@ -388,6 +315,7 @@ namespace INFOIBV
             return image;
         }
 
+        //This function takes an image and outputs a negative image
         private Color[,] conversionNegative(Color[,] image)
         {
             for (int x = 0; x < InputImage.Size.Width; x++)
@@ -404,15 +332,10 @@ namespace INFOIBV
             return image;
         }
 
+        //This function takes an image and a percentage, and adjust the contrast based on the percentage given.
         private Color[,] conversionContrastAdjustment(Color[,] image, double percentage)
         {
-            int low_R;
-            int low_G;
-            int low_B;
-            int high_R;
-            int high_G;
-            int high_B;
-
+            int lowR, lowG, lowB, highR, highG, highB;
             int[] histogram_red = new int[256];
             int[] histogram_green = new int[256];
             int[] histogram_blue = new int[256];
@@ -432,18 +355,18 @@ namespace INFOIBV
             int percentile = (int) (percentage * amount_of_pixels);
             Console.Out.WriteLine("the percentile is set at: " + percentile);
 
-            low_R = getColorAtPercentileLowFromHistogram(histogram_red, percentile);
-            high_R = getColorAtPercentileHighFromHistogram(histogram_red, percentile);
+            lowR = getColorAtPercentileLowFromHistogram(histogram_red, percentile);
+            highR = getColorAtPercentileHighFromHistogram(histogram_red, percentile);
 
-            low_G = getColorAtPercentileLowFromHistogram(histogram_blue, percentile);
-            high_G = getColorAtPercentileHighFromHistogram(histogram_blue, percentile);
+            lowG = getColorAtPercentileLowFromHistogram(histogram_blue, percentile);
+            highG = getColorAtPercentileHighFromHistogram(histogram_blue, percentile);
 
-            low_B = getColorAtPercentileLowFromHistogram(histogram_blue, percentile);
-            high_B = getColorAtPercentileHighFromHistogram(histogram_blue, percentile);
+            lowB = getColorAtPercentileLowFromHistogram(histogram_blue, percentile);
+            highB = getColorAtPercentileHighFromHistogram(histogram_blue, percentile);
 
-            double kR = 255 / (high_R - low_R);
-            double kG = 255 / (high_G - low_G);
-            double kB = 255 / (high_B - low_B);
+            double kR = 255 / (highR - lowR);
+            double kG = 255 / (highG - lowG);
+            double kB = 255 / (highB - lowB);
 
 
             for (int x = 0; x < InputImage.Size.Width; x++)
@@ -451,15 +374,17 @@ namespace INFOIBV
                 for (int y = 0; y < InputImage.Size.Height; y++)
                 {
                     Color pixelColor = image[x, y];
-                    int updatedRed = (int) (kR * (pixelColor.R - low_R));
-                    int updatedGreen = (int) (kG * (pixelColor.G - low_G));
-                    int updatedBlue = (int) (kG * (pixelColor.B - low_B));
+                    int updatedRed = (int) (kR * (pixelColor.R - lowR));
+                    int updatedGreen = (int) (kG * (pixelColor.G - lowG));
+                    int updatedBlue = (int) (kG * (pixelColor.B - lowB));
+                    //Clamping
                     if (updatedRed > 255) updatedRed = 255;
                     if (updatedGreen > 255) updatedGreen = 255;
                     if (updatedBlue > 255) updatedBlue = 255;
                     if (updatedRed < 0) updatedRed = 0;
                     if (updatedGreen < 0) updatedGreen = 0;
                     if (updatedBlue < 0) updatedBlue = 0;
+
                     Color updatedColor = Color.FromArgb(updatedRed, updatedGreen, updatedBlue);
                     image[x, y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
                     progressBar.PerformStep();                              // Increment progress bar
@@ -468,29 +393,32 @@ namespace INFOIBV
             return image;
         }
 
+        //This function takes an image, a gaussian and a kernel size. And applies a gaussian filter to the image and returns it
         private Color[,] conversionGaussian(Color[,] image, double sigma, int size)
         {
             double[,] gaussianFilter = createGaussianFilter(sigma, size);
             return applyFilterToImage(image, gaussianFilter);
         }
 
+        //This function takes an Image, and reads the input from the user. And applies the filter to the image and returns it.
         private Color[,] conversionLinear(Color[,] image, List<TextBox> boxes)
         {
             double[,] linearFilter = createLinearFilter(boxes);
             return applyFilterToImage(image, linearFilter);
         }
-
+        
+        //This function takes an image and a kernel size. And applies a median filter to the image and returns it.
         private Color[,] conversionMedian(Color[,] image, int size)
         {
-            int halfSize = (size - 1) / 2;
+            int xBorder = (size - 1) / 2;
+            int yBorder = (size - 1) / 2;
             Color[,] newImage = new Color[InputImage.Size.Width, InputImage.Size.Height];
             for (int x = 0; x < InputImage.Size.Width; x++)
             {
                 for (int y = 0; y < InputImage.Size.Height; y++)
                 {
                     int newColor;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
+                    if (isPointerOutOfBounds(x, y, xBorder, yBorder)) // If pointer is out of bounds, set value to grey. Border handling.
                     {
                         newColor = 128;
                     }
@@ -499,19 +427,18 @@ namespace INFOIBV
                     {
                         int[] pixelVector = new int[size * size];
                         int pixelVectorIndex = 0;
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
+                        for (int xFilter = -xBorder; xFilter <= xBorder; xFilter++)
                         {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
+                            for (int yFilter = -yBorder; yFilter <= yBorder; yFilter++)
                             {
                                 Color filterColor = image[x - xFilter, y - yFilter];
                                 pixelVector[pixelVectorIndex] = filterColor.R;
                                 pixelVectorIndex++;
                             }
                         }
-                        Array.Sort(pixelVector);
-                        newColor = pixelVector[(pixelVector.Length + 1) / 2];
+                        Array.Sort(pixelVector); //Sorts the pixels
+                        newColor = pixelVector[(pixelVector.Length + 1) / 2]; // Takes the middle pixel value
                     }
-                    
                     Color updatedColor = Color.FromArgb(newColor,newColor,newColor);
                     newImage[x, y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
                     progressBar.PerformStep();                              // Increment progress bar
@@ -521,15 +448,15 @@ namespace INFOIBV
             return newImage;
         }
 
+        //This function creates a gaussian filter based on sigma en kernel size. Returns the filter.
         private double[,] createGaussianFilter(double sigma, int size)
         {
             double[,] gaussianFilter = new double[size, size];
             double r;
             double s = 2.0 * sigma * sigma;
-
-            //This is used later for normalization
-            double sum = 0.0;
+            double sum = 0.0;             //This is used later for normalization
             int halfSize = (size - 1) / 2;
+
             for (int x = -halfSize; x <= halfSize; x++)
             {
                 for (int y = -halfSize; y <= halfSize; y++)
@@ -554,6 +481,7 @@ namespace INFOIBV
             return gaussianFilter;
         }
 
+        //This function creates a linear filter based on the input from the user. Returns the filter
         private double[,] createLinearFilter(List<TextBox> boxes)
         {
             int i = 0, j = 0;
@@ -585,8 +513,10 @@ namespace INFOIBV
             return linearFilter;
         }
 
+        //This function takes an image and a filter, and applies the filter. Returns the image.
         private Color[,] applyFilterToImage(Color[,] image, double[,] filter)
         {
+            progressBar.Value = 1;
             int halfSize = (filter.GetLength(0) - 1) / 2;
             int xBorder = (filter.GetLength(0) - 1) / 2;
             int yBorder = (filter.GetLength(1) - 1) / 2;
@@ -598,8 +528,7 @@ namespace INFOIBV
                     double updatedRed = 0.0;
                     double updatedGreen = 0.0;
                     double updatedBlue = 0.0;
-                    if (x < halfSize || y < halfSize || y >= InputImage.Size.Height - halfSize ||
-                        x >= InputImage.Size.Width - halfSize)
+                    if (isPointerOutOfBounds(x,y,xBorder,yBorder)) // If pointer is out of bounds, set value to grey. Border handling.
                     {
                         updatedBlue = 128;
                         updatedGreen = 128;
@@ -607,18 +536,19 @@ namespace INFOIBV
 
                     }
                     else
-                    {
-                        for (int xFilter = -halfSize; xFilter <= halfSize; xFilter++)
+                    {   //Apply filter to image
+                        for (int xFilter = -xBorder; xFilter <= xBorder; xFilter++)
                         {
-                            for (int yFilter = -halfSize; yFilter <= halfSize; yFilter++)
+                            for (int yFilter = -yBorder; yFilter <= yBorder; yFilter++)
                             {
                                 Color filterColor = image[x - xFilter, y - yFilter];
-                                updatedRed += filter[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.R;
-                                updatedGreen += filter[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.G;
-                                updatedBlue += filter[(xFilter + halfSize), (yFilter + halfSize)] * filterColor.B;
+                                updatedRed += filter[(xFilter + xBorder), (yFilter + yBorder)] * filterColor.R;
+                                updatedGreen += filter[(xFilter + xBorder), (yFilter + yBorder)] * filterColor.G;
+                                updatedBlue += filter[(xFilter + xBorder), (yFilter + yBorder)] * filterColor.B;
                             }
                         }
 
+                        //Clamping
                         if (updatedRed > 255) updatedRed = 255;
                         if (updatedGreen > 255) updatedGreen = 255;
                         if (updatedBlue > 255) updatedBlue = 255;
@@ -635,6 +565,8 @@ namespace INFOIBV
             }
             return newImage;
         }
+
+        //This function takes a histogram array, and a percentage. And calculates the pixel color if % of the pixels is removed. This function goes from low to high.
         private int getColorAtPercentileLowFromHistogram(int[] histogram_array, int percentile)
         {
             for (int i = 0; i < 255; i++)
@@ -649,6 +581,7 @@ namespace INFOIBV
             return 255;
         }
 
+        //This function takes a histogram array, and a percentage. And calculates the pixel color if % of the pixels is removed. This function goes from high to low.
         private int getColorAtPercentileHighFromHistogram(int[] histogram_array, int percentile)
         {
             for (int i = 255; 0 < i; i--)
@@ -663,6 +596,21 @@ namespace INFOIBV
             return 0;
         }
 
+        //This function takes the pointer, and the border definitions. Returns True if the pointer is out of bounds.
+        private Boolean isPointerOutOfBounds(int x, int y, int xBorder, int yBorder)
+        {
+            if (x < xBorder || y < yBorder || y >= InputImage.Size.Height - yBorder ||
+                x >= InputImage.Size.Width - xBorder)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //This functions takes an image, and returns a tuple with histogram arrays
         private Tuple<int[], int[], int[]> calculateHistogramFromImage(Bitmap image)
         {
             Color[,] Image = new Color[image.Size.Width, image.Size.Height]; // Create array to speed-up operations (Bitmap functions are very slow)
@@ -691,6 +639,7 @@ namespace INFOIBV
             return Tuple.Create(histogramRed, histogramGreen, histogramBlue);
         }
 
+        //This function saves the image
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (OutputImage == null) return;                                // Get out if no output image
@@ -698,6 +647,7 @@ namespace INFOIBV
                 OutputImage.Save(saveImageDialog.FileName);                 // Save the output image
         }
 
+        //This function shows optional input if the combobox options requires that.
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.Text.Equals("gaussian"))
@@ -707,6 +657,7 @@ namespace INFOIBV
                 textBox3.Visible = true;
                 label1.Visible = true;
                 label2.Visible = true;
+                label3.Visible = false;
             }
             else
             {
@@ -715,32 +666,22 @@ namespace INFOIBV
                 textBox3.Visible = false;
                 label1.Visible = false;
                 label2.Visible = false;
+                label3.Visible = false;
             }
-        }
 
-        private void INFOIBV_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void histoIn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void histoOut_Click(object sender, EventArgs e)
-        {
-
+            if (comboBox1.Text.Equals("threshold"))
+            {
+                label3.Text = "threshold";
+                label3.Visible = true;
+            }else if (comboBox1.Text.Equals("contrastadjustment"))
+            {
+                label3.Text = "percentage";
+                label3.Visible = true;
+            }else if (comboBox1.Text.Equals("median"))
+            {
+                label3.Text = "kernel size";
+                label3.Visible = true;
+            }
         }
     }
 }

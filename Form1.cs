@@ -377,12 +377,14 @@ namespace INFOIBV
                     int updatedRed = (int) (kR * (pixelColor.R - lowR));
                     int updatedGreen = (int) (kG * (pixelColor.G - lowG));
                     int updatedBlue = (int) (kG * (pixelColor.B - lowB));
+                    //Clamping
                     if (updatedRed > 255) updatedRed = 255;
                     if (updatedGreen > 255) updatedGreen = 255;
                     if (updatedBlue > 255) updatedBlue = 255;
                     if (updatedRed < 0) updatedRed = 0;
                     if (updatedGreen < 0) updatedGreen = 0;
                     if (updatedBlue < 0) updatedBlue = 0;
+
                     Color updatedColor = Color.FromArgb(updatedRed, updatedGreen, updatedBlue);
                     image[x, y] = updatedColor;                             // Set the new pixel color at coordinate (x,y)
                     progressBar.PerformStep();                              // Increment progress bar
@@ -655,6 +657,7 @@ namespace INFOIBV
                 textBox3.Visible = true;
                 label1.Visible = true;
                 label2.Visible = true;
+                label3.Visible = false;
             }
             else
             {
@@ -663,6 +666,21 @@ namespace INFOIBV
                 textBox3.Visible = false;
                 label1.Visible = false;
                 label2.Visible = false;
+                label3.Visible = false;
+            }
+
+            if (comboBox1.Text.Equals("threshold"))
+            {
+                label3.Text = "threshold";
+                label3.Visible = true;
+            }else if (comboBox1.Text.Equals("contrastadjustment"))
+            {
+                label3.Text = "percentage";
+                label3.Visible = true;
+            }else if (comboBox1.Text.Equals("median"))
+            {
+                label3.Text = "kernel size";
+                label3.Visible = true;
             }
         }
     }
